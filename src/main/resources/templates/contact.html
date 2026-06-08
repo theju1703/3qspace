@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact 3QSpace | Get in Touch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFFFF;
+            color: #1E293B;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1E293B;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1B4A6E;
+        }
+
+        .btn-nav {
+            background: #0A2647;
+            color: white !important;
+            padding: 10px 24px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-hero {
+            padding: 160px 0 60px;
+            background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .contact-hero p {
+            font-size: 18px;
+            color: #64748B;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            padding: 60px 0 100px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            background: #F8FAFC;
+            padding: 40px;
+        }
+
+        .contact-info h2 {
+            font-size: 28px;
+            color: #0A2647;
+            margin-bottom: 32px;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .info-card:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1B4A6E;
+        }
+
+        .info-details h3 {
+            font-size: 18px;
+            color: #64748B;
+            margin-bottom: 4px;
+        }
+
+        .info-details p {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0A2647;
+        }
+
+        .info-details a {
+            color: #0A2647;
+            text-decoration: none;
+        }
+
+        .info-details a:hover {
+            color: #1B4A6E;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+            color: #0A2647;
+            margin-bottom: 8px;
+        }
+
+        .form-container p {
+            color: #64748B;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1E293B;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1B4A6E;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #0A2647;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background: #1B4A6E;
+        }
+
+        .success-message {
+            display: none;
+            background: #10B981;
+            color: white;
+            padding: 16px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        footer {
+            background: #F8FAFC;
+            padding: 60px 0 30px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #64748B;
+            text-decoration: none;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: #1B4A6E;
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .container {
+                padding: 0 24px;
+            }
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo">3QSPACE</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+           <a href="/solutions">Solutions</a>
+            <a href="/contact" class="btn-nav">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact 3QSpace</h1>
+            <p>Let's start a conversation. We're here to help you transform your business.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/971526923320" target="_blank">+971 52 692 3320</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Email</h3>
+                            <p><a href="mailto:sales@3qspace.io">sales@3qspace.io</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiry">Your Inquiry / Message</label>
+                            <textarea id="inquiry" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Message →</button>
+                    </form>
+
+                    <div id="successMessage" class="success-message">
+                        ✓ Thank you! Your message has been sent. We'll contact you soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">3QSPACE</div>
+                <p>Enabling intelligent, scalable growth and operational excellence through comprehensive digital transformation solutions.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/">Home</a>
+                <a href="/about">About Us</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="https://wa.me/971526923320" target="_blank">WhatsApp: +971 52 692 3320</a>
+                <a href="mailto:sales@3qspace.io">Email: sales@3qspace.io</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("inquiry").value
+    };
+
+    try {
+        // 1. Send to Formspree for email notification
+        const formspreeResponse = await fetch("https://formspree.io/f/xdajqvyz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        });
+
+        // 2. Send to your Spring Boot backend for database storage
+        const backendResponse = await fetch("/contactus", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (formspreeResponse.ok && backendResponse.ok) {
+            document.getElementById("successMessage").classList.add("show");
+            document.getElementById("contactForm").reset();
+            setTimeout(() => {
+                document.getElementById("successMessage").classList.remove("show");
+            }, 5000);
+        } else {
+            alert("Failed to send message. Please try again.");
+        }
+    } catch (error) {
+        alert("Network error. Please try again.");
+        console.error(error);
+    }
+});
+</script>
+</body>
+</html>

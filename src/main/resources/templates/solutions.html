@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions | 3QSpace - 3QScan & FaceMatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFFFF;
+            color: #1E293B;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1E293B;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1B4A6E;
+        }
+
+        .btn-nav {
+            background: #0A2647;
+            color: white !important;
+            padding: 10px 24px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero-section {
+            padding: 160px 0 60px;
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero-section .tagline {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .banner-section {
+            padding: 0 0 40px 0;
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+        }
+
+        .banner-image {
+            text-align: center;
+        }
+
+        .banner-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #F8FAFC;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: #0A2647;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 40px;
+            border: 1px solid #E2E8F0;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: #1B4A6E;
+        }
+
+        .product-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 28px;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .product-card p {
+            color: #64748B;
+            margin-bottom: 20px;
+        }
+
+        .product-feature {
+            background: #F8FAFC;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .product-feature h4 {
+            color: #0A2647;
+            margin-bottom: 10px;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .industry-card {
+            background: #F8FAFC;
+            padding: 40px;
+        }
+
+        .industry-card h3 {
+            font-size: 28px;
+            color: #0A2647;
+            margin-bottom: 20px;
+        }
+
+        .industry-card h4 {
+            font-size: 18px;
+            color: #1B4A6E;
+            margin: 20px 0 10px;
+        }
+
+        .industry-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .industry-card ul li {
+            padding: 8px 0;
+            color: #475569;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .industry-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .industries {
+            background: #F8FAFC;
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .industry-item {
+            background: white;
+            padding: 20px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .industry-item h4 {
+            color: #0A2647;
+            margin-bottom: 8px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: #F8FAFC;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .pricing-card h3 {
+            font-size: 28px;
+            color: #0A2647;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #0A2647;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card .price small {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .pricing-card ul li {
+            padding: 10px 0;
+            color: #475569;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .pricing-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 4px 12px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .contact-info {
+            background: #F8FAFC;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-info p {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0A2647;
+            margin: 10px 0;
+        }
+
+        .contact-info a {
+            color: #1B4A6E;
+            text-decoration: none;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn-demo {
+            display: inline-block;
+            background: white;
+            color: #0A2647;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid white;
+        }
+
+        footer {
+            background: #F8FAFC;
+            padding: 60px 0 30px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #64748B;
+            text-decoration: none;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: #1B4A6E;
+        }
+
+        @media (max-width: 968px) {
+            .features-grid, .product-grid, .industry-grid, .industries-grid, .pricing-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .container {
+                padding: 0 24px;
+            }
+            .hero-section h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo">3QSPACE</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/product">Solutions</a>
+            <a href="/contact" class="btn-nav">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>3QScan</h1>
+            <p class="tagline">Contactless, accurate attendance solution with geofencing & liveness detection</p>
+        </div>
+    </section>
+
+    <!-- Banner Image Section -->
+    <section class="banner-section">
+        <div class="container">
+            <div class="banner-image">
+                <img src="3qscan-banner.jpg" alt="3QScan Pricing and Features">
+            </div>
+        </div>
+    </section>
+
+    <!-- FaceMatch Description -->
+    <section class="section">
+        <div class="container">
+            <p style="font-size: 18px; line-height: 1.8; color: #475569; text-align: center; max-width: 900px; margin: 0 auto;">
+                FaceMatch is an AI-powered facial recognition platform designed to simplify attendance tracking, access control, and identity verification across educational institutions, corporate offices, retail environments, and event venues.
+            </p>
+            <p style="font-size: 18px; line-height: 1.8; color: #475569; text-align: center; max-width: 900px; margin: 20px auto 0;">
+                With advanced facial recognition, geo-fencing, and liveness detection, FaceMatch enables organizations to eliminate manual attendance processes, improve security, and streamline operations through a contactless and highly accurate verification experience.
+            </p>
+        </div>
+    </section>
+
+    <!-- Why FaceMatch -->
+    <section class="section" style="background: #F8FAFC;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why FaceMatch?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Contactless Attendance Management</h3>
+                    <p>Enable employees, students, visitors, and event attendees to mark attendance effortlessly using facial recognition technology.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>AI-Powered Identity Verification</h3>
+                    <p>Verify identities in real time with high accuracy while reducing the risk of proxy attendance and unauthorized access.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Geo-Fencing & Location Validation</h3>
+                    <p>Ensure attendance and verification are performed only from authorized locations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Liveness Detection</h3>
+                    <p>Prevent spoofing attempts through photos or videos using advanced liveness validation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Monitoring</h3>
+                    <p>Track attendance, access events, and verification activities through a centralized cloud-based administration portal.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Easy Integration</h3>
+                    <p>Integrate FaceMatch seamlessly with existing HRMS, ERP, Student Information Systems, Visitor Management Systems, and Access Control Platforms through simple API connectivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3QScan Product Plans -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>3QScan Plans</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">📱</div>
+                    <h3>100 People Registration</h3>
+                    <p>Software installed on 1 Tablet/Mobile</p>
+                    <div class="product-feature">
+                        <h4>✓ Perfect for:</h4>
+                        <p>Student Attendance | Educational Institutions | Campus Security</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">📱📱📱📱</div>
+                    <h3>200 People Registration</h3>
+                    <p>Software installed on 4 Tablet/Mobile</p>
+                    <div class="product-feature">
+                        <h4>✓ Perfect for:</h4>
+                        <p>Employee Time & Attendance | Corporate Offices | Access Control</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries We Serve -->
+    <section class="industries">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 32px; color: #0A2647;">Industries We Serve</h2>
+            <div class="industries-grid">
+                <div class="industry-item"><h4>🏫 Educational Institutions</h4><p>Student Attendance, Campus Security</p></div>
+                <div class="industry-item"><h4>🏢 Corporate Offices</h4><p>Employee Time & Attendance, Access Control</p></div>
+                <div class="industry-item"><h4>🏨 Retail & Hospitality</h4><p>Staff Management, Loss Prevention</p></div>
+                <div class="industry-item"><h4>🎉 Events & Venues</h4><p>VIP Access, Crowd Management, Ticketless Entry</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Solutions Detail -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Industry Solutions</h2>
+            </div>
+            <div class="industry-grid">
+                <div class="industry-card">
+                    <h3>🏫 Educational Institutions</h3>
+                    <p>Transform campus attendance and security management.</p>
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li>Student Attendance Tracking</li>
+                        <li>Campus Security</li>
+                        <li>Examination Authentication</li>
+                        <li>Staff Attendance Management</li>
+                        <li>Visitor Monitoring</li>
+                    </ul>
+                </div>
+                <div class="industry-card">
+                    <h3>🏢 Corporate Offices</h3>
+                    <p>Automate workforce attendance and access control.</p>
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li>Employee Time & Attendance</li>
+                        <li>Visitor Management</li>
+                        <li>Office Access Control</li>
+                        <li>Contractor Attendance</li>
+                        <li>Remote Workforce Verification</li>
+                    </ul>
+                </div>
+                <div class="industry-card">
+                    <h3>🏨 Retail & Hospitality</h3>
+                    <p>Enhance customer experience and operational efficiency.</p>
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li>VIP Customer Recognition</li>
+                        <li>Staff Attendance Management</li>
+                        <li>Loss Prevention</li>
+                        <li>Store Access Management</li>
+                        <li>Workforce Productivity Monitoring</li>
+                    </ul>
+                </div>
+                <div class="industry-card">
+                    <h3>🎉 Events & Venues</h3>
+                    <p>Deliver a seamless and secure event experience.</p>
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li>Ticketless Entry</li>
+                        <li>VIP Recognition</li>
+                        <li>VIP Access Management</li>
+                        <li>Crowd Management</li>
+                        <li>Event Attendance Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="section" style="background: #F8FAFC;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing Plans</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter Plan</h3>
+                    <div class="price">₹1,499 <small>/ Month</small></div>
+                    <div class="price">AED 100 <small>/ Month</small></div>
+                    <ul>
+                        <li>Up to 50 Registered Users</li>
+                        <li>1 Mobile/Tablet Device</li>
+                        <li>Android Support</li>
+                        <li>Cloud Administration Portal</li>
+                        <li>Monthly Subscription</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>Growth Plan</h3>
+                    <div class="price">₹2,999 <small>/ Month</small></div>
+                    <div class="price">AED 200 <small>/ Month</small></div>
+                    <ul>
+                        <li>Up to 200 Registered Users</li>
+                        <li>Up to 4 Mobile/Tablet Devices</li>
+                        <li>Android Support</li>
+                        <li>Cloud Administration Portal</li>
+                        <li>Monthly Subscription</li>
+                    </ul>
+                    <div class="badge">Most Popular</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: #64748B;">Custom enterprise pricing available for larger deployments.</p>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-info">
+                <p>📱 Mobile: <a href="tel:+919880627054">+91 98806 27054</a></p>
+                <p>📧 Email: <a href="mailto:sales@3qspace.io">sales@3qspace.io</a></p>
+                <p>🌐 3QSpace - Digital Transformation Partner</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Transform Attendance and Identity Verification with AI</h2>
+            <p>FaceMatch combines advanced facial recognition, cloud technology, geo-fencing, and intelligent verification to help organizations improve security, eliminate manual processes, and create a seamless user experience.</p>
+            <div>
+                <a href="/contact" class="btn-demo">Request a Demo</a>
+                <a href="/contact" class="btn-contact">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">3QSPACE</div>
+                <p>Enabling intelligent, scalable growth and operational excellence through comprehensive digital transformation solutions.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/">Home</a>
+                <a href="/about">About Us</a>
+                <a href="/product">Solutions</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="https://wa.me/971526923320" target="_blank">WhatsApp: +971 52 692 3320</a>
+                <a href="mailto:sales@3qspace.io">Email: sales@3qspace.io</a>
+                <a href="tel:+919880627054">India: +91 98806 27054</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

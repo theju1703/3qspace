@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3QSpace | Digital Transformation Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFFFF;
+            color: #1E293B;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1E293B;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #1B4A6E;
+        }
+
+        .btn-nav {
+            background: #0A2647;
+            color: white !important;
+            padding: 10px 24px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(27, 74, 110, 0.1);
+            color: #1B4A6E;
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0A2647;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #475569;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #0A2647;
+            color: white;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 24px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: #0A2647;
+            padding: 13px 31px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #0A2647;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(27, 74, 110, 0.1);
+            color: #1B4A6E;
+            padding: 4px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .mission-vision {
+            background: #F8FAFC;
+            padding: 80px 0;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .mv-card h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #0A2647;
+        }
+
+        .mv-card p {
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .pillars-section {
+            padding: 80px 0;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .pillar-card {
+            background: white;
+            padding: 32px;
+            border: 1px solid #E2E8F0;
+            transition: transform 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            border-color: #1B4A6E;
+        }
+
+        .pillar-icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
+
+        .pillar-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #0A2647;
+        }
+
+        .pillar-card p {
+            color: #64748B;
+            line-height: 1.6;
+        }
+
+        .performance {
+            padding: 80px 0;
+            background: #F8FAFC;
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .perf-card {
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            padding: 48px;
+            color: white;
+        }
+
+        .perf-card h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .innovation {
+            background: #0A2647;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .innovation h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .innovation-card {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+        }
+
+        .innovation-card:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .innovation-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .values {
+            padding: 80px 0;
+        }
+
+        .values-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .value-item {
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: #F1F5F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+        }
+
+        .value-item:hover .value-icon {
+            background: #1B4A6E;
+            color: white;
+        }
+
+        .value-item h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #0A2647;
+        }
+
+        .value-item p {
+            color: #64748B;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: #F8FAFC;
+            padding: 60px 0 30px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0A2647;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #64748B;
+            text-decoration: none;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: #1B4A6E;
+        }
+
+        @media (max-width: 1024px) {
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pillars-grid, .mv-grid, .performance-grid, .innovation-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .container {
+                padding: 0 24px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo">3QSPACE</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/solutions">Solutions</a>
+            <a href="/contact" class="btn-nav">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">✦ World-Class Digital Transformation Partner</span>
+            <h1>Empowering businesses<br>for the digital future</h1>
+            <p>3QSpace enables forward-thinking organizations to achieve unprecedented scalable growth, maximize top-line revenue acceleration, strengthen bottom-line profitability, and continuously identify and improve operational performance through cutting-edge intelligent technology solutions.</p>
+            <div>
+                <a href="#" class="btn-primary">Start Your Transformation →</a>
+               
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Purpose & Promise</span>
+                <h2>Mission & Vision</h2>
+            </div>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <h3>🎯 Our Mission</h3>
+                    <p>To become the most trusted digital transformation partner, enabling organizations to achieve scalable growth without limits, maximize top-line revenue beyond expectations, strengthen bottom-line profitability to new heights, and continuously identify and improve operational performance through intelligent technology solutions that set new industry standards.</p>
+                </div>
+                <div class="mv-card">
+                    <h3>✨ Our Vision</h3>
+                    <p>To deliver groundbreaking, innovative, and infinitely scalable enterprise solutions that drive complete digital transformation, optimize every business process, and provide real-time data-driven insights to consistently identify performance gaps, improve operational efficiency at every level, accelerate revenue growth exponentially, and enhance overall business profitability sustainably.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pillars-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Strategic Framework</span>
+                <h2>Four Pillars of Value Creation</h2>
+            </div>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">⚡</div>
+                    <h3>Digital Transformation</h3>
+                    <p>Empowering businesses for the digital future with next-generation platforms, cloud-first strategies, and intelligent automation that completely redefines customer and employee experiences.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🌱</div>
+                    <h3>Scalable Growth</h3>
+                    <p>Building an unshakeable foundation for sustainable scale — elastic architectures, agile operating models, and growth frameworks that seamlessly adapt to dynamic market conditions.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">📊</div>
+                    <h3>Top-Line Revenue</h3>
+                    <p>Accelerating revenue growth and market expansion through data-led go-to-market strategies, AI-powered personalization, and innovative new revenue stream identification.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">💎</div>
+                    <h3>Bottom-Line Profitability</h3>
+                    <p>Strengthening profitability and maximizing shareholder value via intelligent cost optimization, advanced process mining, and resilient financial operations engineering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="performance">
+        <div class="container">
+            <div class="performance-grid">
+                <div>
+                    <span class="section-tag">Operational Excellence</span>
+                    <h2 style="font-size: 36px; margin-bottom: 20px;">Performance Under Supply<br>& Continuous Improvement</h2>
+                    <p style="font-size: 16px; line-height: 1.7;">Identifying every performance gap and improving consistently across all operations — 3QSpace's intelligent solutions embed real-time monitoring, predictive analytics, and closed-loop feedback systems that transform operational weak points into powerful competitive advantages. We don't just solve today's friction points; we build antifragile systems that thrive under pressure.</p>
+                </div>
+                <div class="perf-card">
+                    <div style="font-size: 48px; margin-bottom: 24px;">🔍</div>
+                    <h3>Performance Intelligence</h3>
+                    <p>Leverage unified observability and AI-driven diagnostics to identify hidden inefficiencies, eliminate waste, and uplift KPIs across supply chain operations, service delivery, and core business workflows. Persistent improvement is engineered into every solution we deliver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="innovation">
+        <div class="container">
+            <h2>INNOVATION DRIVEN. INCREMENTAL SOLUTIONS. TRANSFORMATIONAL GROWTH.</h2>
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <h3>🚀 INNOVATION DRIVEN</h3>
+                    <p>Leading with emerging technologies and bold thinking — we don't follow trends, we set them. Future-proofing enterprises through relentless innovation.</p>
+                </div>
+                <div class="innovation-card">
+                    <h3>⚙️ INCREMENTAL SOLUTIONS</h3>
+                    <p>Delivering measurable wins through agile delivery and risk-aware implementation — creating momentum with every step toward digital maturity.</p>
+                </div>
+                <div class="innovation-card">
+                    <h3>🌿 TRANSFORMATIONAL GROWTH</h3>
+                    <p>Reshaping entire industries and scaling impact exponentially — moving beyond incremental improvement to category-defining transformation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Cultural Compass</span>
+                <h2>Core Values</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <h3>Collaboration</h3>
+                    <p>We partner deeply with clients, ensuring complete transparency and shared success. Co-creation is at the heart of everything we do.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🔒</div>
+                    <h3>Integrity</h3>
+                    <p>Uncompromising ethical frameworks, data privacy protection, and trust at every layer of our engagement — our principles are non-negotiable.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🏆</div>
+                    <h3>Excellence</h3>
+                    <p>High-velocity delivery, quality craftsmanship, and outcome obsession — we relentlessly pursue the best possible results for our partners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to transform your business?</h2>
+            <p>Partner with 3QSpace to unlock scalable growth, accelerate revenue, and drive operational excellence across your entire enterprise.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">3QSPACE</div>
+                <p>Enabling intelligent, scalable growth and operational excellence through comprehensive digital transformation solutions.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Mission & Vision</a>
+                <a href="#">Core Values</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="contact.html">Contact Us</a>
+                <a href="#">hello@3qspace.com</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
