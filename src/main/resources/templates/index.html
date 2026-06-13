@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3QSpace | Digital Transformation Partner</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,8 +14,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #FFFFFF;
-            color: #1E293B;
+            background: #0B0E17;
+            color: #E8EDF5;
             line-height: 1.5;
         }
 
@@ -29,11 +29,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid #E2E8F0;
+            background: #0F1320;
+            border-bottom: 1px solid #232838;
             padding: 20px 0;
+            z-index: 1000;
         }
 
         .nav-container {
@@ -45,14 +44,49 @@
             padding: 0 40px;
         }
 
+        /* Distinctive Logo – not a simple hexagon or generic symbol */
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            position: relative;
+        }
+        .logo-icon .square {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #0BFFD6;
+        }
+        .logo-icon .sq1 {
+            top: 0;
+            left: 0;
+            background: #00B5A0;
+        }
+        .logo-icon .sq2 {
+            bottom: 0;
+            right: 0;
+            background: #0BFFD6;
+        }
+        .logo-icon .sq3 {
+            top: 9px;
+            left: 9px;
+            background: #008C7A;
+            width: 18px;
+            height: 18px;
+        }
+        .logo-text {
             font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #0BFFD6 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-decoration: none;
         }
 
         .nav-links {
@@ -63,70 +97,61 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #1E293B;
+            color: #B9C2D4;
             font-weight: 500;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: #1B4A6E;
+            color: #0BFFD6;
         }
 
         .btn-nav {
-            background: #0A2647;
-            color: white !important;
-            padding: 10px 24px;
-            text-decoration: none;
-            font-weight: 500;
+            background: #0BFFD6;
+            color: #0B0E17 !important;
+            padding: 8px 20px;
+            font-weight: 600;
         }
 
         .hero {
             padding: 160px 0 100px;
-            background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+            background: linear-gradient(135deg, #0B0E17 0%, #13182A 100%);
         }
 
         .hero-badge {
             display: inline-block;
-            background: rgba(27, 74, 110, 0.1);
-            color: #1B4A6E;
+            background: rgba(11, 255, 214, 0.12);
+            color: #0BFFD6;
             padding: 6px 16px;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 24px;
+            letter-spacing: 0.5px;
         }
 
         .hero h1 {
             font-size: 56px;
             font-weight: 800;
             line-height: 1.2;
-            color: #0A2647;
+            color: white;
             margin-bottom: 24px;
         }
 
         .hero p {
             font-size: 18px;
-            color: #475569;
+            color: #9EA8C2;
             margin-bottom: 32px;
             max-width: 600px;
         }
 
         .btn-primary {
             display: inline-block;
-            background: #0A2647;
-            color: white;
+            background: #0BFFD6;
+            color: #0B0E17;
             padding: 14px 32px;
             text-decoration: none;
             font-weight: 600;
             margin-right: 24px;
-        }
-
-        .btn-outline {
-            display: inline-block;
-            background: transparent;
-            color: #0A2647;
-            padding: 13px 31px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 2px solid #0A2647;
         }
 
         .section-header {
@@ -137,8 +162,8 @@
 
         .section-tag {
             display: inline-block;
-            background: rgba(27, 74, 110, 0.1);
-            color: #1B4A6E;
+            background: rgba(11, 255, 214, 0.12);
+            color: #0BFFD6;
             padding: 4px 12px;
             font-size: 13px;
             font-weight: 600;
@@ -148,12 +173,12 @@
         .section-header h2 {
             font-size: 40px;
             font-weight: 700;
-            color: #0A2647;
+            color: white;
             margin-bottom: 16px;
         }
 
         .mission-vision {
-            background: #F8FAFC;
+            background: #0F1320;
             padding: 80px 0;
         }
 
@@ -164,24 +189,25 @@
         }
 
         .mv-card {
-            background: white;
+            background: #151C2A;
             padding: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #232838;
         }
 
         .mv-card h3 {
             font-size: 28px;
             margin-bottom: 16px;
-            color: #0A2647;
+            color: #0BFFD6;
         }
 
         .mv-card p {
-            color: #475569;
+            color: #B9C2D4;
             line-height: 1.7;
         }
 
         .pillars-section {
             padding: 80px 0;
+            background: #0B0E17;
         }
 
         .pillars-grid {
@@ -191,16 +217,15 @@
         }
 
         .pillar-card {
-            background: white;
+            background: #151C2A;
             padding: 32px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid #232838;
             transition: transform 0.3s;
         }
 
         .pillar-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            border-color: #1B4A6E;
+            border-color: #0BFFD6;
         }
 
         .pillar-icon {
@@ -211,17 +236,17 @@
         .pillar-card h3 {
             font-size: 22px;
             margin-bottom: 12px;
-            color: #0A2647;
+            color: #0BFFD6;
         }
 
         .pillar-card p {
-            color: #64748B;
+            color: #9EA8C2;
             line-height: 1.6;
         }
 
         .performance {
             padding: 80px 0;
-            background: #F8FAFC;
+            background: #0F1320;
         }
 
         .performance-grid {
@@ -232,27 +257,31 @@
         }
 
         .perf-card {
-            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            background: linear-gradient(135deg, #151C2A 0%, #1A2335 100%);
             padding: 48px;
-            color: white;
+            border: 1px solid #0BFFD6;
         }
 
         .perf-card h3 {
             font-size: 28px;
             margin-bottom: 16px;
+            color: #0BFFD6;
+        }
+
+        .perf-card p {
+            color: #B9C2D4;
         }
 
         .innovation {
-            background: #0A2647;
+            background: #0B0E17;
             padding: 80px 0;
             text-align: center;
-            color: white;
         }
 
         .innovation h2 {
             font-size: 36px;
             margin-bottom: 40px;
-            letter-spacing: -0.02em;
+            color: white;
         }
 
         .innovation-grid {
@@ -263,21 +292,24 @@
         }
 
         .innovation-card {
-            background: rgba(255,255,255,0.1);
+            background: #151C2A;
+            border: 1px solid #232838;
             padding: 40px;
-        }
-
-        .innovation-card:hover {
-            background: rgba(255,255,255,0.15);
         }
 
         .innovation-card h3 {
             font-size: 24px;
             margin-bottom: 12px;
+            color: #0BFFD6;
+        }
+
+        .innovation-card p {
+            color: #9EA8C2;
         }
 
         .values {
             padding: 80px 0;
+            background: #0F1320;
         }
 
         .values-grid {
@@ -296,7 +328,8 @@
         .value-icon {
             width: 80px;
             height: 80px;
-            background: #F1F5F9;
+            background: #151C2A;
+            border: 1px solid #0BFFD6;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -304,44 +337,41 @@
             font-size: 36px;
         }
 
-        .value-item:hover .value-icon {
-            background: #1B4A6E;
-            color: white;
-        }
-
         .value-item h3 {
             font-size: 24px;
             margin-bottom: 12px;
-            color: #0A2647;
+            color: #0BFFD6;
         }
 
         .value-item p {
-            color: #64748B;
+            color: #9EA8C2;
         }
 
         .cta {
-            background: linear-gradient(135deg, #0A2647 0%, #1B4A6E 100%);
+            background: linear-gradient(135deg, #0F1320 0%, #151C2A 100%);
             padding: 80px 0;
             text-align: center;
-            color: white;
+            border-top: 1px solid #0BFFD6;
+            border-bottom: 1px solid #0BFFD6;
         }
 
         .cta h2 {
             font-size: 40px;
             margin-bottom: 16px;
+            color: white;
         }
 
         .cta p {
             font-size: 18px;
-            opacity: 0.9;
+            color: #9EA8C2;
             max-width: 600px;
             margin: 0 auto;
         }
 
         footer {
-            background: #F8FAFC;
+            background: #0B0E17;
             padding: 60px 0 30px;
-            border-top: 1px solid #E2E8F0;
+            border-top: 1px solid #232838;
         }
 
         .footer-grid {
@@ -353,19 +383,19 @@
         .footer-logo {
             font-size: 24px;
             font-weight: 800;
-            color: #0A2647;
+            color: white;
             margin-bottom: 16px;
         }
 
         .footer-col p, .footer-col a {
-            color: #64748B;
+            color: #9EA8C2;
             text-decoration: none;
             margin-bottom: 12px;
             display: block;
         }
 
         .footer-col a:hover {
-            color: #1B4A6E;
+            color: #0BFFD6;
         }
 
         @media (max-width: 1024px) {
@@ -397,7 +427,14 @@
 
 <nav class="navbar">
     <div class="nav-container">
-        <a href="/" class="logo">3QSPACE</a>
+        <a href="/" class="logo">
+            <div class="logo-icon">
+                <div class="square sq1"></div>
+                <div class="square sq2"></div>
+                <div class="square sq3"></div>
+            </div>
+            <span class="logo-text">3QSPACE</span>
+        </a>
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/about">About Us</a>
@@ -415,7 +452,6 @@
             <p>3QSpace enables forward-thinking organizations to achieve unprecedented scalable growth, maximize top-line revenue acceleration, strengthen bottom-line profitability, and continuously identify and improve operational performance through cutting-edge intelligent technology solutions.</p>
             <div>
                 <a href="#" class="btn-primary">Start Your Transformation →</a>
-               
             </div>
         </div>
     </section>
@@ -475,8 +511,8 @@
             <div class="performance-grid">
                 <div>
                     <span class="section-tag">Operational Excellence</span>
-                    <h2 style="font-size: 36px; margin-bottom: 20px;">Performance Under Supply<br>& Continuous Improvement</h2>
-                    <p style="font-size: 16px; line-height: 1.7;">Identifying every performance gap and improving consistently across all operations — 3QSpace's intelligent solutions embed real-time monitoring, predictive analytics, and closed-loop feedback systems that transform operational weak points into powerful competitive advantages. We don't just solve today's friction points; we build antifragile systems that thrive under pressure.</p>
+                    <h2 style="font-size: 36px; margin-bottom: 20px; color: white;">Performance Under Supply<br>& Continuous Improvement</h2>
+                    <p style="font-size: 16px; line-height: 1.7; color: #9EA8C2;">Identifying every performance gap and improving consistently across all operations — 3QSpace's intelligent solutions embed real-time monitoring, predictive analytics, and closed-loop feedback systems that transform operational weak points into powerful competitive advantages. We don't just solve today's friction points; we build antifragile systems that thrive under pressure.</p>
                 </div>
                 <div class="perf-card">
                     <div style="font-size: 48px; margin-bottom: 24px;">🔍</div>
@@ -550,15 +586,16 @@
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
-                <a href="#">About Us</a>
-                <a href="#">Mission & Vision</a>
-                <a href="#">Core Values</a>
-                <a href="#">Careers</a>
+                <a href="/">Home</a>
+                <a href="/about">About Us</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/contact">Contact</a>
             </div>
             <div class="footer-col">
                 <h4>Connect</h4>
-                <a href="contact.html">Contact Us</a>
-                <a href="#">hello@3qspace.com</a>
+                <a href="https://wa.me/971526923320" target="_blank">WhatsApp: +971 52 692 3320</a>
+                <a href="mailto:sales@3qspace.io">Email: sales@3qspace.io</a>
+                <a href="tel:+919880627054">India: +91 98806 27054</a>
             </div>
         </div>
     </div>
