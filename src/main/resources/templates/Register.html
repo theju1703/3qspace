@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3QSpace | Company & Device QR Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0B0E17;
+            color: #E8EDF5;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0F1320;
+            border-bottom: 1px solid #232838;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            position: relative;
+        }
+
+        .logo-icon .square {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #0BFFD6;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon .sq1 { top: 2px; left: 2px; }
+        .logo-icon .sq2 { top: 2px; right: 2px; }
+        .logo-icon .sq3 { bottom: 2px; left: 2px; }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #B9C2D4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #0BFFD6;
+        }
+
+        .btn-nav {
+            background: #0BFFD6;
+            color: #0B0E17 !important;
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .register-section {
+            padding: 140px 0 80px;
+            min-height: 100vh;
+        }
+
+        .form-card {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #0F1320;
+            border: 1px solid #232838;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid #232838;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px;
+            background: transparent;
+            border: none;
+            color: #9EA8C2;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: #0BFFD6;
+            border-bottom: 2px solid #0BFFD6;
+            background: rgba(11, 255, 214, 0.04);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-card h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .form-card p.subtitle {
+            color: #9EA8C2;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #B9C2D4;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 12px 16px;
+            background: #151C2A;
+            border: 1px solid #232838;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: white;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0BFFD6;
+            box-shadow: 0 0 0 2px rgba(11, 255, 214, 0.15);
+        }
+
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px 14px;
+            background: #151C2A;
+            border: 1px solid #232838;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #9EA8C2;
+            cursor: pointer;
+        }
+
+        .form-group input[type="file"]::file-selector-button {
+            background: #0BFFD6;
+            color: #0B0E17;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 12px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #0BFFD6;
+            color: #0B0E17;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background: #00B5A0;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* QR Code Result Display Card */
+        .qr-display-container {
+            display: none;
+            margin-top: 24px;
+            background: #151C2A;
+            border: 1px solid #0BFFD6;
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .qr-display-container.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .qr-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(11, 255, 214, 0.15);
+            color: #0BFFD6;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .qr-image-wrapper {
+            background: #FFFFFF;
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            margin: 16px 0;
+        }
+
+        .qr-code-img {
+            display: block;
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+        }
+
+        .qr-meta-box {
+            background: #0F1320;
+            border: 1px solid #232838;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .qr-meta-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #1E2333;
+        }
+
+        .qr-meta-row:last-child {
+            border-bottom: none;
+        }
+
+        .qr-meta-label {
+            color: #9EA8C2;
+        }
+
+        .qr-meta-val {
+            color: #FFFFFF;
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .qr-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn-action {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #0BFFD6;
+            color: #0B0E17;
+        }
+
+        .btn-download:hover {
+            background: #00B5A0;
+        }
+
+        .btn-print {
+            background: #232838;
+            color: #E8EDF5;
+        }
+
+        .btn-print:hover {
+            background: #32384D;
+        }
+
+        .btn-reset {
+            background: transparent;
+            border: 1px solid #232838;
+            color: #9EA8C2;
+        }
+
+        .btn-reset:hover {
+            border-color: #0BFFD6;
+            color: #0BFFD6;
+        }
+
+        .instructions-box {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(11, 255, 214, 0.05);
+            border: 1px dashed rgba(11, 255, 214, 0.3);
+            border-radius: 6px;
+            text-align: left;
+            font-size: 13px;
+            color: #B9C2D4;
+            line-height: 1.6;
+        }
+
+        .instructions-box strong {
+            color: #0BFFD6;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .instructions-box ol {
+            padding-left: 20px;
+        }
+
+        .instructions-box li {
+            margin-bottom: 4px;
+        }
+
+        .error-alert {
+            display: none;
+            background: #FF4757;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .error-alert.show {
+            display: block;
+        }
+
+        footer {
+            background: #0B0E17;
+            padding: 60px 0 30px;
+            border-top: 1px solid #232838;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #9EA8C2;
+            text-decoration: none;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: #0BFFD6;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links { display: none; }
+            .container { padding: 0 20px; }
+            .form-card { padding: 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo">
+            <div class="logo-icon">
+                <div class="square sq1"></div>
+                <div class="square sq2"></div>
+                <div class="square sq3"></div>
+            </div>
+            <span class="logo-text">3QSPACE</span>
+        </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/solutions">Solutions</a>
+            <a href="/contact">Contact</a>
+            <a href="/register" class="btn-nav">Register</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="register-section">
+        <div class="container">
+            <div class="form-card">
+                
+                <div class="tabs-header">
+                    <button class="tab-btn active" onclick="switchTab('registerTab')">Register Company & Device</button>
+                    <button class="tab-btn" onclick="switchTab('retrieveTab')">Retrieve Device QR Code</button>
+                </div>
+
+                <!-- TAB 1: REGISTRATION -->
+                <div id="registerTab" class="tab-content active">
+                    <h1>Company Registration</h1>
+                    <p class="subtitle">Register your organization and generate your paired 3QScan terminal QR code.</p>
+
+                    <form id="registerForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input type="text" id="companyName" name="companyName" required placeholder="e.g. Acme Corporation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyEmail">Company Email Address *</label>
+                            <input type="email" id="companyEmail" name="companyEmail" required placeholder="e.g. admin@acmecorp.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="e.g. +91 98765 43210">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deviceId">Device ID *</label>
+                            <input type="text" id="deviceId" name="deviceId" required placeholder="e.g. DEV-MAIN-01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyLogo">Company Logo (Optional)</label>
+                            <input type="file" id="companyLogo" name="companyLogo" accept="image/*">
+                        </div>
+
+                        <button type="submit" id="btnSubmit" class="btn-submit">
+                            <span>Register & Generate QR Code</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- TAB 2: RETRIEVE EXISTING QR -->
+                <div id="retrieveTab" class="tab-content">
+                    <h1>Retrieve Device QR</h1>
+                    <p class="subtitle">Already registered? Enter your company name and device ID to display the terminal QR code.</p>
+
+                    <form id="retrieveForm">
+                        <div class="form-group">
+                            <label for="retrieveCompany">Company Name *</label>
+                            <input type="text" id="retrieveCompany" required placeholder="e.g. Acme Corporation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="retrieveDevice">Device ID *</label>
+                            <input type="text" id="retrieveDevice" required placeholder="e.g. DEV-MAIN-01">
+                        </div>
+
+                        <button type="submit" id="btnRetrieve" class="btn-submit">
+                            <span>Fetch Terminal QR Code</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="errorAlert" class="error-alert"></div>
+
+                <!-- QR CODE DISPLAY CONTAINER -->
+                <div id="qrDisplayContainer" class="qr-display-container">
+                    <div class="qr-status-badge">
+                        <span>●</span> <span>QR Ready for 3QScan App</span>
+                    </div>
+                    
+                    <h2 style="color:white; font-size:22px; margin-bottom: 6px;">Terminal QR Code</h2>
+                    <p style="color:#9EA8C2; font-size:14px;">Scan this QR code with the 3QScan mobile application to pair this terminal.</p>
+
+                    <div class="qr-image-wrapper">
+                        <img id="qrCodeImage" class="qr-code-img" alt="Terminal QR Code" src="" />
+                    </div>
+
+                    <div class="qr-meta-box">
+                        <div class="qr-meta-row">
+                            <span class="qr-meta-label">Company Name:</span>
+                            <span id="metaCompany" class="qr-meta-val">-</span>
+                        </div>
+                        <div class="qr-meta-row">
+                            <span class="qr-meta-label">Device ID:</span>
+                            <span id="metaDevice" class="qr-meta-val">-</span>
+                        </div>
+                        <div class="qr-meta-row">
+                            <span class="qr-meta-label">Payload Format:</span>
+                            <span class="qr-meta-val">JSON {"companyName", "deviceId"}</span>
+                        </div>
+                        <div class="qr-meta-row">
+                            <span class="qr-meta-label">Backend Host:</span>
+                            <span class="qr-meta-val">localhost:8080</span>
+                        </div>
+                    </div>
+
+                    <div class="qr-actions">
+                        <a id="btnDownload" class="btn-action btn-download" download="3QScan-Terminal-QR.png" href="#">
+                            📥 Download QR Code (.png)
+                        </a>
+                        <button class="btn-action btn-print" onclick="window.print()">
+                            🖨 Print QR
+                        </button>
+                        <button class="btn-action btn-reset" onclick="resetToForm()">
+                            Register Another Device
+                        </button>
+                    </div>
+
+                    <div class="instructions-box">
+                        <strong>📱 Next Steps: Hardware Pairing Instructions</strong>
+                        <ol>
+                            <li>Launch the <strong>3QScan Android App</strong> on your attendance terminal.</li>
+                            <li>On the initial setup screen, tap <strong>Scan Company QR</strong>.</li>
+                            <li>Point your device camera directly at this QR code.</li>
+                            <li>The app will automatically save your company & device credentials and register the device hardware SSAID with the backend.</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">3QSPACE</div>
+                <p>Enabling intelligent, scalable growth and operational excellence through comprehensive digital transformation solutions.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/">Home</a>
+                <a href="/about">About Us</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/contact">Contact</a>
+                <a href="/register">Register</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="https://wa.me/971526923320" target="_blank">WhatsApp: +971 52 692 3320</a>
+                <a href="mailto:sales@3qspace.io">Email: sales@3qspace.io</a>
+                <a href="tel:+919880627054">India: +91 98806 27054</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+const BACKEND_URL = "http://localhost:8080";
+
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    if (tabId === 'registerTab') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('registerTab').classList.add('active');
+    } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('retrieveTab').classList.add('active');
+    }
+    hideError();
+}
+
+function showError(msg) {
+    const alertBox = document.getElementById("errorAlert");
+    alertBox.textContent = msg;
+    alertBox.classList.add("show");
+}
+
+function hideError() {
+    document.getElementById("errorAlert").classList.remove("show");
+}
+
+function displayQrCode(imageSrc, companyName, deviceId) {
+    const qrImg = document.getElementById("qrCodeImage");
+    qrImg.src = imageSrc;
+
+    document.getElementById("metaCompany").textContent = companyName;
+    document.getElementById("metaDevice").textContent = deviceId;
+
+    const downloadLink = document.getElementById("btnDownload");
+    downloadLink.href = imageSrc;
+    const cleanCompany = companyName.replace(/[^a-zA-Z0-9_-]/g, "_");
+    const cleanDevice = deviceId.replace(/[^a-zA-Z0-9_-]/g, "_");
+    downloadLink.download = `3QScan-${cleanCompany}-${cleanDevice}-QR.png`;
+
+    const container = document.getElementById("qrDisplayContainer");
+    container.classList.add("show");
+    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetToForm() {
+    document.getElementById("qrDisplayContainer").classList.remove("show");
+    document.getElementById("registerForm").reset();
+    document.getElementById("companyName").focus();
+}
+
+// 1. Submit Registration Form
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    hideError();
+
+    const companyName = document.getElementById("companyName").value.trim();
+    const companyEmail = document.getElementById("companyEmail").value.trim();
+    const phoneNumber = document.getElementById("phoneNumber").value.trim();
+    const deviceId = document.getElementById("deviceId").value.trim();
+    const logoFile = document.getElementById("companyLogo").files[0];
+
+    const submitBtn = document.getElementById("btnSubmit");
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "<span>Registering & Calling Backend APIs...</span>";
+
+    try {
+        // Step 1: Call 3QSpace Portal /register (which also calls 3QS_backend POST /tenant and GET /tenant/{company}/qr)
+        const formData = new FormData();
+        formData.append("companyName", companyName);
+        formData.append("companyEmail", companyEmail);
+        formData.append("phoneNumber", phoneNumber);
+        formData.append("deviceId", deviceId);
+        if (logoFile) {
+            formData.append("companyLogo", logoFile);
+        }
+
+        const response = await fetch("/register", {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            
+            // If the server returned the base64 QR code directly:
+            if (data.qrCode) {
+                displayQrCode(data.qrCode, companyName, deviceId);
+            } else {
+                // Step 2 Fallback: Fetch directly from 3QS_backend GET /tenant/{companyName}/qr?deviceId={deviceId}
+                await fetchQrDirectly(companyName, deviceId);
+            }
+        } else {
+            // Direct call to 3QS_backend if /register proxy encountered issues
+            await registerOnBackendDirectly(companyName, companyEmail, deviceId);
+        }
+    } catch (err) {
+        console.warn("Direct proxy failed, trying direct 3QS_backend calls:", err);
+        // Fallback: Directly call the two APIs on http://localhost:8080
+        await registerOnBackendDirectly(companyName, companyEmail, deviceId);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "<span>Register & Generate QR Code</span>";
+    }
+});
+
+// Direct caller for API 1 (POST /tenant) and API 2 (GET /tenant/.../qr)
+async function registerOnBackendDirectly(companyName, companyEmail, deviceId) {
+    try {
+        // API 1: POST /tenant
+        const tenantRes = await fetch(`${BACKEND_URL}/tenant`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                companyName: companyName,
+                emailId: companyEmail,
+                deviceId: deviceId
+            })
+        });
+
+        // Even if 409 (already created), try to fetch the QR
+        await fetchQrDirectly(companyName, deviceId);
+    } catch (err) {
+        console.error("Failed calling backend directly:", err);
+        showError("Could not reach backend on http://localhost:8080. Please ensure 3QS_backend is started.");
+    }
+}
+
+// Direct caller for API 2: GET /tenant/{companyName}/qr?deviceId={deviceId}
+async function fetchQrDirectly(companyName, deviceId) {
+    try {
+        const encodedCompany = encodeURIComponent(companyName);
+        const encodedDevice = encodeURIComponent(deviceId);
+        const qrUrl = `${BACKEND_URL}/tenant/${encodedCompany}/qr?deviceId=${encodedDevice}`;
+
+        const qrRes = await fetch(qrUrl);
+        if (!qrRes.ok) {
+            throw new Error(`Backend returned status ${qrRes.status}`);
+        }
+
+        const blob = await qrRes.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        displayQrCode(objectUrl, companyName, deviceId);
+    } catch (err) {
+        console.error("Failed to fetch QR directly:", err);
+        // Also check /api/qr on port 9999
+        try {
+            const portalQr = `/api/qr?companyName=${encodeURIComponent(companyName)}&deviceId=${encodeURIComponent(deviceId)}`;
+            const portalRes = await fetch(portalQr);
+            if (portalRes.ok) {
+                const blob = await portalRes.blob();
+                displayQrCode(URL.createObjectURL(blob), companyName, deviceId);
+                return;
+            }
+        } catch (_) {}
+        showError("Registered successfully, but could not load QR image. Make sure 3QS_backend is running on port 8080.");
+    }
+}
+
+// 2. Retrieve Existing QR Form Handler
+document.getElementById("retrieveForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    hideError();
+
+    const companyName = document.getElementById("retrieveCompany").value.trim();
+    const deviceId = document.getElementById("retrieveDevice").value.trim();
+
+    const retrieveBtn = document.getElementById("btnRetrieve");
+    retrieveBtn.disabled = true;
+    retrieveBtn.innerHTML = "<span>Fetching QR Code...</span>";
+
+    try {
+        await fetchQrDirectly(companyName, deviceId);
+    } finally {
+        retrieveBtn.disabled = false;
+        retrieveBtn.innerHTML = "<span>Fetch Terminal QR Code</span>";
+    }
+});
+</script>
+</body>
+</html>

@@ -10,6 +10,10 @@ public class PageController {
     public String homePage() {
         return "index";
     }
+    @GetMapping("/register")
+public String registerPage() {
+    return "register";
+}
 
     @GetMapping("/about")
     public String aboutPage() {
