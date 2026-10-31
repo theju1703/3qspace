@@ -11,9 +11,9 @@ public class PageController {
         return "index";
     }
     @GetMapping("/register")
-public String registerPage() {
-    return "register";
-}
+    public String registerPage() {
+        return "register";
+    }
 
     @GetMapping("/about")
     public String aboutPage() {

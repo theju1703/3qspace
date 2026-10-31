@@ -3,479 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions | 3QSpace - 3QScan & FaceMatch</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <title>Solutions | 3QSpace - 3QScan &amp; FaceMatch</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0B0E17;
-            color: #E8EDF5;
-            line-height: 1.5;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #0F1320;
-            border-bottom: 1px solid #232838;
-            padding: 20px 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            position: relative;
-        }
-        .logo-icon .square {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-        }
-        .logo-icon .sq1 {
-            top: 0;
-            left: 0;
-            background: #00B5A0;
-        }
-        .logo-icon .sq2 {
-            bottom: 0;
-            right: 0;
-            background: #0BFFD6;
-        }
-        .logo-icon .sq3 {
-            top: 9px;
-            left: 9px;
-            background: #008C7A;
-            width: 18px;
-            height: 18px;
-        }
-        .logo-text {
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #0BFFD6 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 48px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #B9C2D4;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #0BFFD6;
-        }
-
-        .btn-nav {
-            background: #0BFFD6;
-            color: #0B0E17 !important;
-            padding: 8px 20px;
-            font-weight: 600;
-        }
-
-        .hero-section {
-            padding: 160px 0 60px;
-            background: linear-gradient(135deg, #0B0E17 0%, #13182A 100%);
-            text-align: center;
-        }
-
-        .hero-section h1 {
-            font-size: 56px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .hero-section .tagline {
-            font-size: 24px;
-            color: #0BFFD6;
-            margin-bottom: 30px;
-        }
-
-        .banner-section {
-            padding: 0 0 40px 0;
-            background: linear-gradient(135deg, #0B0E17 0%, #13182A 100%);
-        }
-
-        .banner-image {
-            text-align: center;
-        }
-
-        .banner-image img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #0BFFD6;
-        }
-
-        .section {
-            padding: 80px 0;
-            border-bottom: 1px solid #232838;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 36px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 16px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: #151C2A;
-            padding: 30px;
-            border: 1px solid #232838;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #0BFFD6;
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            color: #0BFFD6;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: #9EA8C2;
-            line-height: 1.6;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .product-card {
-            background: #151C2A;
-            padding: 40px;
-            border: 1px solid #232838;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: #0BFFD6;
-        }
-
-        .product-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .product-card h3 {
-            font-size: 28px;
-            color: #0BFFD6;
-            margin-bottom: 16px;
-        }
-
-        .product-card p {
-            color: #9EA8C2;
-            margin-bottom: 20px;
-        }
-
-        .product-feature {
-            background: #0F1320;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .product-feature h4 {
-            color: #0BFFD6;
-            margin-bottom: 10px;
-        }
-
-        .industry-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-
-        .industry-card {
-            background: #151C2A;
-            padding: 40px;
-            border: 1px solid #232838;
-        }
-
-        .industry-card h3 {
-            font-size: 28px;
-            color: #0BFFD6;
-            margin-bottom: 20px;
-        }
-
-        .industry-card h4 {
-            font-size: 18px;
-            color: white;
-            margin: 20px 0 10px;
-        }
-
-        .industry-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .industry-card ul li {
-            padding: 8px 0;
-            color: #9EA8C2;
-            border-bottom: 1px solid #232838;
-        }
-
-        .industry-card ul li:last-child {
-            border-bottom: none;
-        }
-
-        .industries {
-            background: #0F1320;
-            padding: 60px 0;
-            margin-top: 40px;
-        }
-
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .industry-item {
-            background: #151C2A;
-            padding: 20px;
-            border: 1px solid #232838;
-        }
-
-        .industry-item h4 {
-            color: #0BFFD6;
-            margin-bottom: 8px;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: #151C2A;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid #232838;
-        }
-
-        .pricing-card h3 {
-            font-size: 28px;
-            color: #0BFFD6;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card .price {
-            font-size: 28px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .pricing-card .price small {
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-            margin: 30px 0;
-        }
-
-        .pricing-card ul li {
-            padding: 10px 0;
-            color: #9EA8C2;
-            border-bottom: 1px solid #232838;
-        }
-
-        .pricing-card ul li:last-child {
-            border-bottom: none;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #00B5A0;
-            color: white;
-            padding: 4px 12px;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-
-        .contact-info {
-            background: #0F1320;
-            padding: 40px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .contact-info p {
-            font-size: 20px;
-            font-weight: 600;
-            color: white;
-            margin: 10px 0;
-        }
-
-        .contact-info a {
-            color: #0BFFD6;
-            text-decoration: none;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #0F1320 0%, #151C2A 100%);
-            padding: 80px 0;
-            text-align: center;
-            border-top: 1px solid #0BFFD6;
-            border-bottom: 1px solid #0BFFD6;
-        }
-
-        .cta-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: #9EA8C2;
-        }
-
-        .btn-demo {
-            display: inline-block;
-            background: #0BFFD6;
-            color: #0B0E17;
-            padding: 14px 32px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 0 10px;
-        }
-
-        .btn-contact {
-            display: inline-block;
-            background: transparent;
-            color: #0BFFD6;
-            padding: 14px 32px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 2px solid #0BFFD6;
-        }
-
-        footer {
-            background: #0B0E17;
-            padding: 60px 0 30px;
-            border-top: 1px solid #232838;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 16px;
-        }
-
-        .footer-col p, .footer-col a {
-            color: #9EA8C2;
-            text-decoration: none;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .footer-col a:hover {
-            color: #0BFFD6;
-        }
-
-        @media (max-width: 968px) {
-            .features-grid, .product-grid, .industry-grid, .industries-grid, .pricing-grid, .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links {
-                display: none;
-            }
-            .container {
-                padding: 0 24px;
-            }
-            .hero-section h1 {
-                font-size: 36px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -490,12 +20,12 @@
             <span class="logo-text">3QSPACE</span>
         </a>
         <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about">About Us</a>
-    <a href="/solutions">Solutions</a>
-    <a href="/contact">Contact</a>
-    <a href="/register" class="btn-nav">Register</a>
-</div>
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/solutions">Solutions</a>
+            <a href="/contact">Contact</a>
+            <a href="/register" class="btn-nav">Register</a>
+        </div>
     </div>
 </nav>
 
@@ -503,7 +33,7 @@
     <section class="hero-section">
         <div class="container">
             <h1>3QScan</h1>
-            <p class="tagline">Contactless, accurate attendance solution with geofencing & liveness detection</p>
+            <p class="tagline">Contactless, accurate attendance solution with geofencing &amp; liveness detection</p>
         </div>
     </section>
 
@@ -544,7 +74,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📍</div>
-                    <h3>Geo-Fencing & Location Validation</h3>
+                    <h3>Geo-Fencing &amp; Location Validation</h3>
                     <p>Ensure attendance and verification are performed only from authorized locations.</p>
                 </div>
                 <div class="feature-card">
@@ -587,7 +117,7 @@
                     <p>Software installed on 4 Tablet/Mobile</p>
                     <div class="product-feature">
                         <h4>✓ Perfect for:</h4>
-                        <p>Employee Time & Attendance | Corporate Offices | Access Control</p>
+                        <p>Employee Time &amp; Attendance | Corporate Offices | Access Control</p>
                     </div>
                 </div>
             </div>
@@ -599,9 +129,9 @@
             <h2 style="text-align: center; font-size: 32px; color: white;">Industries We Serve</h2>
             <div class="industries-grid">
                 <div class="industry-item"><h4>🏫 Educational Institutions</h4><p>Student Attendance, Campus Security</p></div>
-                <div class="industry-item"><h4>🏢 Corporate Offices</h4><p>Employee Time & Attendance, Access Control</p></div>
-                <div class="industry-item"><h4>🏨 Retail & Hospitality</h4><p>Staff Management, Loss Prevention</p></div>
-                <div class="industry-item"><h4>🎉 Events & Venues</h4><p>VIP Access, Crowd Management, Ticketless Entry</p></div>
+                <div class="industry-item"><h4>🏢 Corporate Offices</h4><p>Employee Time &amp; Attendance, Access Control</p></div>
+                <div class="industry-item"><h4>🏨 Retail &amp; Hospitality</h4><p>Staff Management, Loss Prevention</p></div>
+                <div class="industry-item"><h4>🎉 Events &amp; Venues</h4><p>VIP Access, Crowd Management, Ticketless Entry</p></div>
             </div>
         </div>
     </section>
@@ -629,7 +159,7 @@
                     <p>Automate workforce attendance and access control.</p>
                     <h4>Use Cases</h4>
                     <ul>
-                        <li>Employee Time & Attendance</li>
+                        <li>Employee Time &amp; Attendance</li>
                         <li>Visitor Management</li>
                         <li>Office Access Control</li>
                         <li>Contractor Attendance</li>
@@ -637,7 +167,7 @@
                     </ul>
                 </div>
                 <div class="industry-card">
-                    <h3>🏨 Retail & Hospitality</h3>
+                    <h3>🏨 Retail &amp; Hospitality</h3>
                     <p>Enhance customer experience and operational efficiency.</p>
                     <h4>Use Cases</h4>
                     <ul>
@@ -649,7 +179,7 @@
                     </ul>
                 </div>
                 <div class="industry-card">
-                    <h3>🎉 Events & Venues</h3>
+                    <h3>🎉 Events &amp; Venues</h3>
                     <p>Deliver a seamless and secure event experience.</p>
                     <h4>Use Cases</h4>
                     <ul>

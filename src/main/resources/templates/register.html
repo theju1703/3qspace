@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3QSpace | Company &amp; Device QR Registration</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <div class="square sq1"></div>
+                    <div class="square sq2"></div>
+                    <div class="square sq3"></div>
+                </div>
+                <span class="logo-text">3QSPACE</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About Us</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/contact">Contact</a>
+                <a href="/register" class="btn-nav">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="register-section">
+            <div class="container">
+                <div class="form-card">
+
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="switchTab('registerTab')">Register Company &amp; Device</button>
+                        <button class="tab-btn" onclick="switchTab('retrieveTab')">Retrieve Device QR Code</button>
+                    </div>
+
+                    <!-- TAB 1: REGISTRATION -->
+                    <div id="registerTab" class="tab-content active">
+                        <h1>Company Registration</h1>
+                        <p class="subtitle">Register your organization and generate your paired 3QScan terminal QR code.</p>
+
+                        <form id="registerForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="companyName">Company Name *</label>
+                                <input type="text" id="companyName" name="companyName" required placeholder="e.g. Acme Corporation">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companyEmail">Company Email Address *</label>
+                                <input type="email" id="companyEmail" name="companyEmail" required placeholder="e.g. admin@acmecorp.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="e.g. +91 98765 43210">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deviceId">Device ID *</label>
+                                <input type="text" id="deviceId" name="deviceId" required placeholder="e.g. DEV-MAIN-01">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companyLogo">Company Logo (Optional)</label>
+                                <input type="file" id="companyLogo" name="companyLogo" accept="image/*">
+                            </div>
+
+                            <button type="submit" id="btnSubmit" class="btn-submit">
+                                <span>Register &amp; Generate QR Code</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- TAB 2: RETRIEVE EXISTING QR -->
+                    <div id="retrieveTab" class="tab-content">
+                        <h1>Retrieve Device QR</h1>
+                        <p class="subtitle">Already registered? Enter your company name and device ID to display the terminal QR code.</p>
+
+                        <form id="retrieveForm">
+                            <div class="form-group">
+                                <label for="retrieveCompany">Company Name *</label>
+                                <input type="text" id="retrieveCompany" required placeholder="e.g. Acme Corporation">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="retrieveDevice">Device ID *</label>
+                                <input type="text" id="retrieveDevice" required placeholder="e.g. DEV-MAIN-01">
+                            </div>
+
+                            <button type="submit" id="btnRetrieve" class="btn-submit">
+                                <span>Fetch Terminal QR Code</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div id="errorAlert" class="error-alert"></div>
+
+                    <!-- QR CODE DISPLAY CONTAINER -->
+                    <div id="qrDisplayContainer" class="qr-display-container">
+                        <div class="qr-status-badge">
+                            <span>●</span> <span>QR Ready for 3QScan App</span>
+                        </div>
+
+                        <h2 style="color:white; font-size:22px; margin-bottom: 6px;">Terminal QR Code</h2>
+                        <p style="color:#9EA8C2; font-size:14px;">Scan this QR code with the 3QScan mobile application to pair this terminal.</p>
+
+                        <div class="qr-image-wrapper">
+                            <img id="qrCodeImage" class="qr-code-img" alt="Terminal QR Code" src="" />
+                        </div>
+
+                        <div class="qr-meta-box">
+                            <div class="qr-meta-row">
+                                <span class="qr-meta-label">Company Name:</span>
+                                <span id="metaCompany" class="qr-meta-val">-</span>
+                            </div>
+                            <div class="qr-meta-row">
+                                <span class="qr-meta-label">Device ID:</span>
+                                <span id="metaDevice" class="qr-meta-val">-</span>
+                            </div>
+                            <div class="qr-meta-row">
+                                <span class="qr-meta-label">Payload Format:</span>
+                                <span class="qr-meta-val">JSON {"companyName", "deviceId"}</span>
+                            </div>
+                            <div class="qr-meta-row">
+                                <span class="qr-meta-label">Backend Host:</span>
+                                <span class="qr-meta-val">201.18.201.146:8080</span>
+                            </div>
+                        </div>
+
+                        <div class="qr-actions">
+                            <a id="btnDownload" class="btn-action btn-download" download="3QScan-Terminal-QR.png" href="#">
+                                📥 Download QR Code (.png)
+                            </a>
+                            <button class="btn-action btn-print" onclick="window.print()">
+                                🖨 Print QR
+                            </button>
+                            <button class="btn-action btn-reset" onclick="resetToForm()">
+                                Register Another Device
+                            </button>
+                        </div>
+
+                        <div class="instructions-box">
+                            <strong>📱 Next Steps: Hardware Pairing Instructions</strong>
+                            <ol>
+                                <li>Launch the <strong>3QScan Android App</strong> on your attendance terminal.</li>
+                                <li>On the initial setup screen, tap <strong>Scan Company QR</strong>.</li>
+                                <li>Point your device camera directly at this QR code.</li>
+                                <li>The app will automatically save your company &amp; device credentials and register the device hardware SSAID with the backend.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">3QSPACE</div>
+                    <p>Enabling intelligent, scalable growth and operational excellence through comprehensive digital transformation solutions.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="/">Home</a>
+                    <a href="/about">About Us</a>
+                    <a href="/solutions">Solutions</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/register">Register</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="https://wa.me/971526923320" target="_blank">WhatsApp: +971 52 692 3320</a>
+                    <a href="mailto:sales@3qspace.io">Email: sales@3qspace.io</a>
+                    <a href="tel:+919880627054">India: +91 98806 27054</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const BACKEND_URL = "http://201.18.201.146:8080";
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            if (tabId === 'registerTab') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('registerTab').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('retrieveTab').classList.add('active');
+            }
+            hideError();
+        }
+
+        function showError(msg) {
+            const alertBox = document.getElementById("errorAlert");
+            alertBox.textContent = msg;
+            alertBox.classList.add("show");
+        }
+
+        function hideError() {
+            document.getElementById("errorAlert").classList.remove("show");
+        }
+
+        function displayQrCode(imageSrc, companyName, deviceId) {
+            const qrImg = document.getElementById("qrCodeImage");
+            qrImg.src = imageSrc;
+
+            document.getElementById("metaCompany").textContent = companyName;
+            document.getElementById("metaDevice").textContent = deviceId;
+
+            const downloadLink = document.getElementById("btnDownload");
+            downloadLink.href = imageSrc;
+            const cleanCompany = companyName.replace(/[^a-zA-Z0-9_-]/g, "_");
+            const cleanDevice = deviceId.replace(/[^a-zA-Z0-9_-]/g, "_");
+            downloadLink.download = `3QScan-${cleanCompany}-${cleanDevice}-QR.png`;
+
+            const container = document.getElementById("qrDisplayContainer");
+            container.classList.add("show");
+            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function resetToForm() {
+            document.getElementById("qrDisplayContainer").classList.remove("show");
+            document.getElementById("registerForm").reset();
+            document.getElementById("companyName").focus();
+        }
+
+        // 1. Submit Registration Form
+        document.getElementById("registerForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            hideError();
+
+            const companyName = document.getElementById("companyName").value.trim();
+            const companyEmail = document.getElementById("companyEmail").value.trim();
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+            const deviceId = document.getElementById("deviceId").value.trim();
+            const logoFile = document.getElementById("companyLogo").files[0];
+
+            const submitBtn = document.getElementById("btnSubmit");
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "<span>Registering &amp; Calling Backend APIs...</span>";
+
+            try {
+                // Step 1: Call 3QSpace Portal /register (which also calls 3QS_backend POST /tenant and GET /tenant/{company}/qr)
+                const formData = new FormData();
+                formData.append("companyName", companyName);
+                formData.append("companyEmail", companyEmail);
+                formData.append("phoneNumber", phoneNumber);
+                formData.append("deviceId", deviceId);
+                if (logoFile) {
+                    formData.append("companyLogo", logoFile);
+                }
+
+                const response = await fetch("/register", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // If the server returned the base64 QR code directly:
+                    if (data.qrCode) {
+                        displayQrCode(data.qrCode, companyName, deviceId);
+                    } else {
+                        // Step 2 Fallback: Fetch directly from 3QS_backend GET /tenant/{companyName}/qr?deviceId={deviceId}
+                        await fetchQrDirectly(companyName, deviceId);
+                    }
+                } else {
+                    // Direct call to 3QS_backend if /register proxy encountered issues
+                    await registerOnBackendDirectly(companyName, companyEmail, deviceId);
+                }
+            } catch (err) {
+                console.warn("Direct proxy failed, trying direct 3QS_backend calls:", err);
+                // Fallback: Directly call the two APIs on http://localhost:8080
+                await registerOnBackendDirectly(companyName, companyEmail, deviceId);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "<span>Register &amp; Generate QR Code</span>";
+            }
+        });
+
+        // Direct caller for API 1 (POST /tenant) and API 2 (GET /tenant/.../qr)
+        async function registerOnBackendDirectly(companyName, companyEmail, deviceId) {
+            try {
+                // API 1: POST /tenant
+                const tenantRes = await fetch(`${BACKEND_URL}/tenant`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        companyName: companyName,
+                        emailId: companyEmail,
+                        deviceId: deviceId
+                    })
+                });
+
+                // Even if 409 (already created), try to fetch the QR
+                await fetchQrDirectly(companyName, deviceId);
+            } catch (err) {
+                console.error("Failed calling backend directly:", err);
+                showError("Could not reach backend on http://201.18.201.146:8080. Please ensure 3QS_backend is started.");
+            }
+        }
+
+        // Direct caller for API 2: GET /tenant/{companyName}/qr?deviceId={deviceId}
+        async function fetchQrDirectly(companyName, deviceId) {
+            try {
+                const encodedCompany = encodeURIComponent(companyName);
+                const encodedDevice = encodeURIComponent(deviceId);
+                const qrUrl = `${BACKEND_URL}/tenant/${encodedCompany}/qr?deviceId=${encodedDevice}`;
+
+                const qrRes = await fetch(qrUrl);
+                if (!qrRes.ok) {
+                    throw new Error(`Backend returned status ${qrRes.status}`);
+                }
+
+                const blob = await qrRes.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                displayQrCode(objectUrl, companyName, deviceId);
+            } catch (err) {
+                console.error("Failed to fetch QR directly:", err);
+                // Also check /api/qr on port 9999
+                try {
+                    const portalQr = `/api/qr?companyName=${encodeURIComponent(companyName)}&deviceId=${encodeURIComponent(deviceId)}`;
+                    const portalRes = await fetch(portalQr);
+                    if (portalRes.ok) {
+                        const blob = await portalRes.blob();
+                        displayQrCode(URL.createObjectURL(blob), companyName, deviceId);
+                        return;
+                    }
+                } catch (_) { }
+                showError("Registered successfully, but could not load QR image. Make sure 3QS_backend is running on port 8080.");
+            }
+        }
+
+        // 2. Retrieve Existing QR Form Handler
+        document.getElementById("retrieveForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            hideError();
+
+            const companyName = document.getElementById("retrieveCompany").value.trim();
+            const deviceId = document.getElementById("retrieveDevice").value.trim();
+
+            const retrieveBtn = document.getElementById("btnRetrieve");
+            retrieveBtn.disabled = true;
+            retrieveBtn.innerHTML = "<span>Fetching QR Code...</span>";
+
+            try {
+                await fetchQrDirectly(companyName, deviceId);
+            } finally {
+                retrieveBtn.disabled = false;
+                retrieveBtn.innerHTML = "<span>Fetch Terminal QR Code</span>";
+            }
+        });
+    </script>
+</body>
+</html>
