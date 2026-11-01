@@ -133,10 +133,11 @@ hr {
 
 /* --- Navigation Bar (Sticky with subtle background & shadow) --- */
 .navbar {
-    position: fixed;
+    display: block !important;
+    position: fixed !important;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100% !important;
     background: rgba(11, 14, 23, 0.92);
     backdrop-filter: blur(18px) saturate(1.8);
     -webkit-backdrop-filter: blur(18px) saturate(1.8);
@@ -148,12 +149,14 @@ hr {
 }
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1280px;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1320px;
     margin: 0 auto;
     padding: 0 40px;
+    box-sizing: border-box;
 }
 
 /* Logo */
@@ -221,23 +224,31 @@ hr {
 
 /* Nav links */
 .nav-links {
-    display: flex;
+    display: flex !important;
     gap: 36px;
     align-items: center;
 }
 
-.nav-links a {
+.nav-links a,
+.btn-nav {
     text-decoration: none;
-    color: var(--text-muted);
-    font-weight: 500;
-    font-size: 15px;
+    color: var(--text-muted) !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
     position: relative;
-    padding: 6px 0;
-    transition: var(--transition);
+    padding: 6px 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    letter-spacing: normal !important;
+    transition: var(--transition) !important;
 }
 
-.nav-links a::after {
-    content: '';
+.nav-links a::after,
+.btn-nav::after {
+    content: '' !important;
+    display: block !important;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -248,34 +259,17 @@ hr {
     border-radius: var(--radius-pill);
 }
 
-.nav-links a:hover {
-    color: var(--text-primary);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.btn-nav {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%) !important;
-    color: #07090E !important;
-    padding: 9px 24px !important;
-    border-radius: var(--radius-md) !important;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    letter-spacing: 0.3px;
-    box-shadow: var(--shadow-accent-sm);
-    transition: var(--transition) !important;
-}
-
-.btn-nav::after {
-    display: none !important;
-}
-
+.nav-links a:hover,
 .btn-nav:hover {
-    background: var(--accent-light) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-accent) !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.nav-links a:hover::after,
+.btn-nav:hover::after {
+    width: 100% !important;
 }
 
 /* --- Hero Sections --- */
@@ -1582,14 +1576,12 @@ footer {
     }
     .nav-links {
         display: flex;
-        gap: 12px;
+        gap: 16px;
         flex-wrap: wrap;
     }
-    .nav-links a {
-        font-size: 13px;
-    }
+    .nav-links a,
     .btn-nav {
-        padding: 6px 14px !important;
-        font-size: 12.5px !important;
+        font-size: 13px !important;
+        padding: 4px 0 !important;
     }
 }
